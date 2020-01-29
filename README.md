@@ -8,5 +8,4 @@ using ASP.NET Core and EntityFramework Core.
 
 * Visual Studio 2019
 * .NET Core SDK
-* MySql 8
-
+* MySql
