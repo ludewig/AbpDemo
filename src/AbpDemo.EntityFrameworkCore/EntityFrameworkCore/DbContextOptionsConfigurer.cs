@@ -9,8 +9,11 @@ namespace AbpDemo.EntityFrameworkCore
             string connectionString
             )
         {
-            /* This is the single point to configure DbContextOptions for AbpDemoDbContext */
+            /* 配置数据库连接上下文 */
+            //SQL Server
             //dbContextOptions.UseSqlServer(connectionString);
+
+            //MySql
             dbContextOptions.UseMySql(connectionString);
         }
     }
