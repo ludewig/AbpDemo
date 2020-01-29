@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace AbpDemo
 {
+    /// <summary>
+    /// 应用服务基类接口
+    /// </summary>
+    /// <typeparam name="TEntity">实体</typeparam>
+    /// <typeparam name="TEntityDto">详情数据传输对象</typeparam>
+    /// <typeparam name="TPrimaryKey">主键</typeparam>
+    /// <typeparam name="TCreateInput">新增数据传输对象</typeparam>
+    /// <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
     public interface IAbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput> : IApplicationService
         where TEntity : class, IEntity<TPrimaryKey>
         where TUpdateInput : class, IEntityDto<TPrimaryKey>
@@ -40,7 +48,7 @@ namespace AbpDemo
         /// </summary>
         /// <param name="ids">实体标识集合</param>
         /// <returns></returns>
-        Task<bool> Delete(IEnumerable<TPrimaryKey> ids);
+        Task<int> Delete(IEnumerable<TPrimaryKey> ids);
 
     }
 }

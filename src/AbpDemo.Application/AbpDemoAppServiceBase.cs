@@ -14,19 +14,31 @@ using System.Linq.Expressions;
 namespace AbpDemo
 {
     /// <summary>
-    /// Derive your application services from this class.
+    /// 应用服务基类
     /// </summary>
+    /// <typeparam name="TEntity">实体</typeparam>
+    /// <typeparam name="TEntityDto">详情数据传输对象</typeparam>
+    /// <typeparam name="TPrimaryKey">主键</typeparam>
+    /// <typeparam name="TCreateInput">新增数据传输对象</typeparam>
+    /// <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
     public abstract class AbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput> : ApplicationService,
         IAbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput>
         where TEntity : class, IEntity<TPrimaryKey>
         where TUpdateInput : class, IEntityDto<TPrimaryKey>
         where TEntityDto : class, IEntityDto<TPrimaryKey>
     {
+        //仓储
         protected readonly IRepository<TEntity, TPrimaryKey> Repository;
 
         protected AbpDemoAppServiceBase()
         {
             LocalizationSourceName = AbpDemoConsts.LocalizationSourceName;
+        }
+
+        protected AbpDemoAppServiceBase(IRepository<TEntity, TPrimaryKey> repository)
+        {
+            LocalizationSourceName = AbpDemoConsts.LocalizationSourceName;
+            Repository = repository;
         }
 
         #region 方法
@@ -95,20 +107,23 @@ namespace AbpDemo
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
-        public virtual Task<bool> Delete(IEnumerable<TPrimaryKey> ids)
+        public virtual Task<int> Delete(IEnumerable<TPrimaryKey> ids)
         {
+            int num = 0;
             try
             {
                 foreach (TPrimaryKey id in ids)
                 {
                     Repository.Delete(id);
+                    num++;
                 }
-                return Task.FromResult<bool>(true);
+                return Task.FromResult<int>(num);
             }
             catch (System.Exception ex)
             {
-                return Task.FromException<bool>(ex);
+                throw ex;
             }
+
         }
         #endregion
 
