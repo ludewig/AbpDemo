@@ -5,12 +5,21 @@ namespace AbpDemo.EntityFrameworkCore
 {
     public class AbpDemoDbContext : AbpDbContext
     {
-        //Add DbSet properties for your entities...
+        //在此处为实体类添加DbSet属性
+        public DbSet<Goods> Goods { get; set; }
 
         public AbpDemoDbContext(DbContextOptions<AbpDemoDbContext> options) 
             : base(options)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //实体对象与数据库对象映射
+            modelBuilder.ApplyConfiguration(new GoodsMap());
         }
     }
 }
