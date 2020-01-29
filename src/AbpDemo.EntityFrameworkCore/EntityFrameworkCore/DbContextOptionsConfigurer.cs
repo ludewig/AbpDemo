@@ -10,7 +10,8 @@ namespace AbpDemo.EntityFrameworkCore
             )
         {
             /* This is the single point to configure DbContextOptions for AbpDemoDbContext */
-            dbContextOptions.UseSqlServer(connectionString);
+            //dbContextOptions.UseSqlServer(connectionString);
+            dbContextOptions.UseMySql(connectionString);
         }
     }
 }
