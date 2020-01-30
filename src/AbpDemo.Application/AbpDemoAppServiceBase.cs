@@ -21,11 +21,12 @@ namespace AbpDemo
     /// <typeparam name="TPrimaryKey">主键</typeparam>
     /// <typeparam name="TCreateInput">新增数据传输对象</typeparam>
     /// <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
-    public abstract class AbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput> : ApplicationService,
-        IAbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput>
+    public abstract class AbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput, TPagedInput> : ApplicationService,
+        IAbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput, TPagedInput>
         where TEntity : class, IEntity<TPrimaryKey>
         where TUpdateInput : class, IEntityDto<TPrimaryKey>
         where TEntityDto : class, IEntityDto<TPrimaryKey>
+        where TPagedInput:PagedBaseDto
     {
         //仓储
         protected readonly IRepository<TEntity, TPrimaryKey> Repository;
@@ -126,6 +127,94 @@ namespace AbpDemo
 
         }
         #endregion
+
+        #region 分页查询
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public virtual async Task<PagedResultDto<TEntityDto>> Page(TPagedInput input)
+        {
+            if (input == null)
+            {
+                return new PagedResultDto<TEntityDto>();
+            }
+            PagedResultDto<TEntityDto> result = new PagedResultDto<TEntityDto>();
+            IQueryable<TEntity> query = Repository.GetAll();
+            var sourceExpression = query.Expression;
+
+            //where表达式
+            if (input.Filters != null)
+            {
+                foreach (var filter in input.Filters)
+                {
+                    if (string.IsNullOrWhiteSpace(filter.FilterName) || string.IsNullOrWhiteSpace(filter.FilterValue))
+                    {
+                        continue;
+                    }
+                    var whereLambdaExtenstion = GetLambdaExtention(filter);
+                    sourceExpression = Expression.Call(typeof(Queryable), "Where", new Type[1] { typeof(TEntity) }, sourceExpression, Expression.Quote(whereLambdaExtenstion.GetLambda()));
+                }
+            }
+
+            if (input.Sorts != null)
+            {
+                ParameterExpression parameter = Expression.Parameter(typeof(TEntity), "x");
+                string methodAsc = "OrderBy";
+                string methodDesc = "OrderByDescending";
+                foreach (var sort in input.Sorts)
+                {
+                    if (string.IsNullOrWhiteSpace(sort.SortName))
+                    {
+                        continue;
+                    }
+                    MemberExpression body = Expression.PropertyOrField(parameter, sort.SortName);
+                    sourceExpression = Expression.Call(typeof(Queryable), sort.SortType == SortType.Asc ? methodAsc : methodDesc, new Type[] { typeof(TEntity), body.Type }, sourceExpression, Expression.Quote(Expression.Lambda(body, parameter)));
+                    methodAsc = "ThenBy";
+                    methodDesc = "ThenByDescending";
+                }
+            }
+
+            query = query.Provider.Execute<IEnumerable<TEntity>>(sourceExpression).AsQueryable();
+
+            result.TotalCount = query.Count();
+            if (input.PageSize != -1)
+            {
+                result.Items = query.Skip((input.PageIndex - 1) * input.PageSize).Take(input.PageSize).MapTo<IEnumerable<TEntityDto>>().ToList();
+            }
+            else
+            {
+                result.Items = query.MapTo<IEnumerable<TEntityDto>>().ToList();
+            }
+
+            return await Task.FromResult(result);
+        }
+
+        private LambdaExtention<TEntity> GetLambdaExtention(DataFilter filter)
+        {
+            var whereLambdaExtenstion = new LambdaExtention<TEntity>();
+
+            switch (filter.FilterType)
+            {
+                case FilterType.Int:
+                    whereLambdaExtenstion.GetExpression(filter.FilterName, int.Parse(filter.FilterValue), filter.ExpressionType);
+                    break;
+                case FilterType.Long:
+                    whereLambdaExtenstion.GetExpression(filter.FilterName, long.Parse(filter.FilterValue), filter.ExpressionType);
+                    break;
+                case FilterType.Boolean:
+                    whereLambdaExtenstion.GetExpression(filter.FilterName, filter.FilterValue.ToUpper() == "TRUE" ? true : false, filter.ExpressionType);
+                    break;
+                default:
+                    whereLambdaExtenstion.GetExpression(filter.FilterName, filter.FilterValue, filter.ExpressionType);
+                    break;
+            }
+            return whereLambdaExtenstion;
+
+        }
+        #endregion
+
 
         #endregion
 

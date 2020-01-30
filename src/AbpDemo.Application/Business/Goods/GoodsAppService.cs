@@ -10,7 +10,7 @@ namespace AbpDemo.Business
     /// <summary>
     /// 货品管理-应用服务
     /// </summary>
-    public class GoodsAppService: AbpDemoAppServiceBase<Goods,DetailGoodsDto,string,CreateGoodsDto,UpdateGoodsDto>,IGoodsAppService
+    public class GoodsAppService: AbpDemoAppServiceBase<Goods,DetailGoodsDto,string,CreateGoodsDto,UpdateGoodsDto,PagedGoodsDto>,IGoodsAppService
     {
         public GoodsAppService(IRepository<Goods,string> repository):base(repository)
         {

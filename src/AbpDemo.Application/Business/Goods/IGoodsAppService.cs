@@ -9,7 +9,7 @@ namespace AbpDemo.Business
     /// <summary>
     /// 货品管理-应用服务接口
     /// </summary>
-    public interface IGoodsAppService: IAbpDemoAppServiceBase<Goods,DetailGoodsDto,string,CreateGoodsDto,UpdateGoodsDto>,IApplicationService
+    public interface IGoodsAppService: IAbpDemoAppServiceBase<Goods,DetailGoodsDto,string,CreateGoodsDto,UpdateGoodsDto, PagedGoodsDto>,IApplicationService
     {
 
     }

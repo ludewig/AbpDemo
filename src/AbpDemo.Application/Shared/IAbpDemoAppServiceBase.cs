@@ -16,10 +16,12 @@ namespace AbpDemo
     /// <typeparam name="TPrimaryKey">主键</typeparam>
     /// <typeparam name="TCreateInput">新增数据传输对象</typeparam>
     /// <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
-    public interface IAbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput> : IApplicationService
+    public interface IAbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput, TPagedInput> : IApplicationService
         where TEntity : class, IEntity<TPrimaryKey>
         where TUpdateInput : class, IEntityDto<TPrimaryKey>
         where TEntityDto : class, IEntityDto<TPrimaryKey>
+        where TPagedInput : PagedBaseDto
+
     {
 
         /// <summary>
@@ -49,6 +51,13 @@ namespace AbpDemo
         /// <param name="ids">实体标识集合</param>
         /// <returns></returns>
         Task<int> Delete(IEnumerable<TPrimaryKey> ids);
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="input">查询数据传输对象</param>
+        /// <returns></returns>
+        Task<PagedResultDto<TEntityDto>> Page(TPagedInput input);
 
     }
 }
