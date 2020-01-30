@@ -13,6 +13,7 @@
             <typeparam name="TPrimaryKey">主键</typeparam>
             <typeparam name="TCreateInput">新增数据传输对象</typeparam>
             <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
+            <typeparam name="TPagedInput">分页数据传输对象</typeparam>
         </member>
         <member name="M:AbpDemo.AbpDemoAppServiceBase`6.Create(`3)">
             <summary>
@@ -94,6 +95,16 @@
             货品数量
             </summary>
         </member>
+        <member name="P:AbpDemo.Business.InOutGoodsDto.GoodsName">
+            <summary>
+            货品名称
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.InOutGoodsDto.GoodsNum">
+            <summary>
+            货品数量
+            </summary>
+        </member>
         <member name="T:AbpDemo.Business.UpdateGoodsDto">
             <summary>
             修改货品-数据传输对象
@@ -143,6 +154,7 @@
             <typeparam name="TPrimaryKey">主键</typeparam>
             <typeparam name="TCreateInput">新增数据传输对象</typeparam>
             <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
+            <typeparam name="TPagedInput">分页数据传输对象</typeparam>
         </member>
         <member name="M:AbpDemo.IAbpDemoAppServiceBase`6.Create(`3)">
             <summary>

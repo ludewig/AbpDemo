@@ -21,6 +21,7 @@ namespace AbpDemo
     /// <typeparam name="TPrimaryKey">主键</typeparam>
     /// <typeparam name="TCreateInput">新增数据传输对象</typeparam>
     /// <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
+    /// <typeparam name="TPagedInput">分页数据传输对象</typeparam>
     public abstract class AbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput, TPagedInput> : ApplicationService,
         IAbpDemoAppServiceBase<TEntity, TEntityDto, TPrimaryKey, TCreateInput, TUpdateInput, TPagedInput>
         where TEntity : class, IEntity<TPrimaryKey>

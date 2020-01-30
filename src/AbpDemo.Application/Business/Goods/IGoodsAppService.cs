@@ -11,6 +11,17 @@ namespace AbpDemo.Business
     /// </summary>
     public interface IGoodsAppService: IAbpDemoAppServiceBase<Goods,DetailGoodsDto,string,CreateGoodsDto,UpdateGoodsDto, PagedGoodsDto>,IApplicationService
     {
-
+        ///// <summary>
+        ///// 入库
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns></returns>
+        //Task<DetailGoodsDto> In(InOutGoodsDto input);
+        ///// <summary>
+        ///// 出库
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns></returns>
+        //Task<DetailGoodsDto> Out(InOutGoodsDto input);
     }
 }

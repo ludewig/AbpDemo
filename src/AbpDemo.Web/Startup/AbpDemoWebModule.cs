@@ -32,7 +32,8 @@ namespace AbpDemo.Web.Startup
             Configuration.Modules.AbpAspNetCore()
                 .CreateControllersForAppServices(
                     typeof(AbpDemoApplicationModule).GetAssembly(),
-                "demo");
+                "demo",true);
+            Configuration.Modules.AbpAspNetCore().UseMvcDateTimeFormatForAppServices = true;//使用MVC时间格式
         }
 
         public override void Initialize()

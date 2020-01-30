@@ -27,8 +27,8 @@ namespace AbpDemo.Web.Startup
 
             services.AddControllersWithViews(options =>
             {
-                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-            }).AddNewtonsoftJson();
+                //options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            }).AddNewtonsoftJson(options=>options.SerializerSettings.DateFormatString="yyyy-MM-dd HH:mm:ss");
 
             #region swagger
             services.AddSwaggerGen(options =>
@@ -39,10 +39,11 @@ namespace AbpDemo.Web.Startup
                         Version = "v1.0",
                         Description="",
                         TermsOfService=new Uri("https://github.com/ludewig"),
-                        Contact = new OpenApiContact { Name="myname",Email="myemail",Url=new Uri("https://github.com/ludewig") }
+                        Contact = new OpenApiContact { Name="ludewig",Email="panshuairg@hotmail.com",Url=new Uri("https://github.com/ludewig") }
                     });
+                options.DocInclusionPredicate((docName, description) => true);
 
-                var filePath = Path.Combine(System.AppContext.BaseDirectory, "AbpDemo.Application.xml");
+                var filePath = Path.Combine(AppContext.BaseDirectory, "AbpDemo.Application.xml");
                 options.IncludeXmlComments(filePath);
             });
             #endregion
@@ -75,10 +76,7 @@ namespace AbpDemo.Web.Startup
             app.UseRouting();
 
             #region swagger
-            app.UseSwagger(optiopns =>
-            {
-
-            });
+            app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Demo API v1");
