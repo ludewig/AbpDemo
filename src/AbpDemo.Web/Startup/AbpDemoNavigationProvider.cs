@@ -20,6 +20,13 @@ namespace AbpDemo.Web.Startup
                         )
                 ).AddItem(
                     new MenuItemDefinition(
+                        PageNames.API,
+                        L("API"),
+                        url: "swagger/index.html",
+                        icon: "fa fa-hashtag"
+                        )
+                ).AddItem(
+                    new MenuItemDefinition(
                         PageNames.About,
                         L("About"),
                         url: "Home/About",

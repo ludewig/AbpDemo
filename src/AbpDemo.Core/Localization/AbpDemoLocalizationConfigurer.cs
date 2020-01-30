@@ -11,7 +11,8 @@ namespace AbpDemo.Localization
     {
         public static void Configure(ILocalizationConfiguration localizationConfiguration)
         {
-            localizationConfiguration.Languages.Add(new LanguageInfo("en", "English", "famfamfam-flags england", isDefault: true));
+            localizationConfiguration.Languages.Add(new LanguageInfo("zh", "简体中文", "famfamfam-flags cn", isDefault: true));
+            localizationConfiguration.Languages.Add(new LanguageInfo("en", "English", "famfamfam-flags england"));
             localizationConfiguration.Languages.Add(new LanguageInfo("tr", "Türkçe", "famfamfam-flags tr"));
 
             localizationConfiguration.Sources.Add(

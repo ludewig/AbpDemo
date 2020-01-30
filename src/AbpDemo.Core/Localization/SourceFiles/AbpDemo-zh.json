@@ -1,0 +1,13 @@
+﻿{
+  "culture": "zh",
+  "texts": {
+    "HelloWorld": "欢迎使用ABP开发框架",
+    "ChangeLanguage": "选择语言",
+    "HomePage": "主页",
+    "About": "关于",
+    "Home_Description": "ABP框架的介绍...",
+    "About_Description": "关于我们",
+    "API": "接口",
+    "Properties": "功能特性"
+  }
+}

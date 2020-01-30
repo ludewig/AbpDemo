@@ -31,8 +31,8 @@ namespace AbpDemo.Web.Startup
 
             Configuration.Modules.AbpAspNetCore()
                 .CreateControllersForAppServices(
-                    typeof(AbpDemoApplicationModule).GetAssembly()
-                );
+                    typeof(AbpDemoApplicationModule).GetAssembly(),
+                "demo");
         }
 
         public override void Initialize()

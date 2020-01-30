@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AbpDemo.Application</name>
+    </assembly>
+    <members>
+        <member name="T:AbpDemo.AbpDemoAppServiceBase`6">
+            <summary>
+            应用服务基类
+            </summary>
+            <typeparam name="TEntity">实体</typeparam>
+            <typeparam name="TEntityDto">详情数据传输对象</typeparam>
+            <typeparam name="TPrimaryKey">主键</typeparam>
+            <typeparam name="TCreateInput">新增数据传输对象</typeparam>
+            <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
+        </member>
+        <member name="M:AbpDemo.AbpDemoAppServiceBase`6.Create(`3)">
+            <summary>
+            新增
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.AbpDemoAppServiceBase`6.Update(`4)">
+            <summary>
+            修改
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.AbpDemoAppServiceBase`6.Detail(`2)">
+            <summary>
+            详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.AbpDemoAppServiceBase`6.Delete(System.Collections.Generic.IEnumerable{`2})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.AbpDemoAppServiceBase`6.Page(`5)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AbpDemo.Business.CreateGoodsDto">
+            <summary>
+            新增货品-数据传输对象
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.CreateGoodsDto.GoodsName">
+            <summary>
+            货品名称
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.CreateGoodsDto.GoodsType">
+            <summary>
+            货品类型
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.CreateGoodsDto.Location">
+            <summary>
+            存放位置
+            </summary>
+        </member>
+        <member name="T:AbpDemo.Business.DetailGoodsDto">
+            <summary>
+            货品详情-数据传输对象
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.DetailGoodsDto.GoodsName">
+            <summary>
+            货品名称
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.DetailGoodsDto.GoodsType">
+            <summary>
+            货品类型
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.DetailGoodsDto.Location">
+            <summary>
+            存放位置
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.DetailGoodsDto.GoodsNum">
+            <summary>
+            货品数量
+            </summary>
+        </member>
+        <member name="T:AbpDemo.Business.UpdateGoodsDto">
+            <summary>
+            修改货品-数据传输对象
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.UpdateGoodsDto.GoodsType">
+            <summary>
+            货品类型
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.UpdateGoodsDto.Location">
+            <summary>
+            存放位置
+            </summary>
+        </member>
+        <member name="T:AbpDemo.Business.GoodsAppService">
+            <summary>
+            货品管理-应用服务
+            </summary>
+        </member>
+        <member name="T:AbpDemo.Business.IGoodsAppService">
+            <summary>
+            货品管理-应用服务接口
+            </summary>
+        </member>
+        <member name="T:AbpDemo.LambdaExtention`1">
+            <summary>
+            动态Lambda构造类
+            </summary>
+            <typeparam name="Dto"></typeparam>
+        </member>
+        <member name="M:AbpDemo.LambdaExtention`1.GetAssignAction(System.String,System.Object)">
+            <summary>
+            获取赋值操作的Lambda
+            </summary>
+            <param name="strPropertyName"></param>
+            <param name="strValue"></param>
+            <returns></returns>
+            
+        </member>
+        <member name="T:AbpDemo.IAbpDemoAppServiceBase`6">
+            <summary>
+            应用服务基类接口
+            </summary>
+            <typeparam name="TEntity">实体</typeparam>
+            <typeparam name="TEntityDto">详情数据传输对象</typeparam>
+            <typeparam name="TPrimaryKey">主键</typeparam>
+            <typeparam name="TCreateInput">新增数据传输对象</typeparam>
+            <typeparam name="TUpdateInput">修改数据传输对象</typeparam>
+        </member>
+        <member name="M:AbpDemo.IAbpDemoAppServiceBase`6.Create(`3)">
+            <summary>
+            新增
+            </summary>
+            <param name="input">新增数据传输对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.IAbpDemoAppServiceBase`6.Update(`4)">
+            <summary>
+            修改
+            </summary>
+            <param name="input">修改数据传输对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.IAbpDemoAppServiceBase`6.Detail(`2)">
+            <summary>
+            详情
+            </summary>
+            <param name="id">实体标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.IAbpDemoAppServiceBase`6.Delete(System.Collections.Generic.IEnumerable{`2})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">实体标识集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.IAbpDemoAppServiceBase`6.Page(`5)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="input">查询数据传输对象</param>
+            <returns></returns>
+        </member>
+        <member name="P:AbpDemo.PagedBaseDto.Filters">
+            <summary>
+            过滤条件
+            </summary>
+        </member>
+        <member name="P:AbpDemo.PagedBaseDto.Sorts">
+            <summary>
+            排序规则
+            </summary>
+        </member>
+        <member name="P:AbpDemo.PagedBaseDto.PageSize">
+            <summary>
+            每页记录数
+            </summary>
+        </member>
+        <member name="P:AbpDemo.PagedBaseDto.PageIndex">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="F:AbpDemo.SortType.Asc">
+            <summary>
+            升序
+            </summary>
+        </member>
+        <member name="F:AbpDemo.SortType.Desc">
+            <summary>
+            降序
+            </summary>
+        </member>
+        <member name="F:AbpDemo.ExpressionType.Contains">
+            <summary>
+             like
+            </summary>
+        </member>
+        <member name="F:AbpDemo.ExpressionType.Equal">
+            <summary>
+            等于
+            </summary>
+        </member>
+        <member name="F:AbpDemo.ExpressionType.LessThan">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:AbpDemo.ExpressionType.LessThanOrEqual">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:AbpDemo.ExpressionType.GreaterThan">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:AbpDemo.ExpressionType.GreaterThanOrEqual">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+    </members>
+</doc>
