@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
 using Abp.AutoMapper;
+using Abp.Events.Bus;
 
 namespace AbpDemo.Business
 {
@@ -12,12 +13,15 @@ namespace AbpDemo.Business
     /// </summary>
     public class GoodsAppService: AbpDemoAppServiceBase<Goods,DetailGoodsDto,string,CreateGoodsDto,UpdateGoodsDto,PagedGoodsDto>,IGoodsAppService
     {
-        private readonly IGoodsRecordManager _goodsRecordManager;
-        private readonly IGoodsManager _goodsManager;
+        private readonly IGoodsRecordManager _goodsRecordManager;//出入库记录领域服务
+        private readonly IGoodsManager _goodsManager;//货品管理领域服务
+        public IEventBus EventBus { get; set; }//事件总线
+        private const int MinNum = 50;//货品数量下限
         public GoodsAppService(IRepository<Goods,string> repository,IGoodsRecordManager goodsRecordManager,IGoodsManager goodsManager):base(repository)
         {
             _goodsRecordManager = goodsRecordManager;
             _goodsManager = goodsManager;
+            EventBus = NullEventBus.Instance;
         }
 
         /// <summary>
@@ -70,6 +74,27 @@ namespace AbpDemo.Business
             string recordId = await _goodsRecordManager.OutRecord(record);
 
             entity = await Repository.UpdateAsync(entity);
+
+            if (entity.GoodsNum<=MinNum)
+            {
+                EventBus.Trigger(new GoodsNumChangedEventData
+                {
+                    Id = entity.Id,
+                    GoodsName = entity.GoodsName,
+                    GoodsNum = entity.GoodsNum,
+                    MinNum=MinNum
+                }) ;
+
+                ////注册事件
+                //var goodsChangedEvent = EventBus.Register<GoodsNumChangedEventData>(data =>
+                //{
+                //    /*
+                //     * To do
+                //     **/
+                //});
+                ////取消注册事件
+                //goodsChangedEvent.Dispose();
+            }
 
             DetailGoodsDto result = entity.MapTo<DetailGoodsDto>();
             return await Task.FromResult(result);
