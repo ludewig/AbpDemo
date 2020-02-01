@@ -32,6 +32,9 @@ namespace AbpDemo
         public int GoodsNum { get; set; }
     }
 
+    /// <summary>
+    /// 库存操作类型
+    /// </summary>
     public enum GoodsOperateType
     {
         /// <summary>

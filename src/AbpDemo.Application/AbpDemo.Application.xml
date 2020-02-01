@@ -100,6 +100,16 @@
             货品名称
             </summary>
         </member>
+        <member name="P:AbpDemo.Business.InOutGoodsDto.GoodsType">
+            <summary>
+            货品类型
+            </summary>
+        </member>
+        <member name="P:AbpDemo.Business.InOutGoodsDto.Location">
+            <summary>
+            存放位置
+            </summary>
+        </member>
         <member name="P:AbpDemo.Business.InOutGoodsDto.GoodsNum">
             <summary>
             货品数量
@@ -125,10 +135,38 @@
             货品管理-应用服务
             </summary>
         </member>
+        <member name="M:AbpDemo.Business.GoodsAppService.In(AbpDemo.Business.InOutGoodsDto)">
+            <summary>
+            入库
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.Business.GoodsAppService.Out(AbpDemo.Business.InOutGoodsDto)">
+            <summary>
+            出库
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:AbpDemo.Business.IGoodsAppService">
             <summary>
             货品管理-应用服务接口
             </summary>
+        </member>
+        <member name="M:AbpDemo.Business.IGoodsAppService.In(AbpDemo.Business.InOutGoodsDto)">
+            <summary>
+            入库
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.Business.IGoodsAppService.Out(AbpDemo.Business.InOutGoodsDto)">
+            <summary>
+            出库
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="T:AbpDemo.LambdaExtention`1">
             <summary>
