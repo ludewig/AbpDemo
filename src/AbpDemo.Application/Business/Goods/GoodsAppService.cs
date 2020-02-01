@@ -13,11 +13,24 @@ namespace AbpDemo.Business
     public class GoodsAppService: AbpDemoAppServiceBase<Goods,DetailGoodsDto,string,CreateGoodsDto,UpdateGoodsDto,PagedGoodsDto>,IGoodsAppService
     {
         private readonly IGoodsRecordManager _goodsRecordManager;
-        public GoodsAppService(IRepository<Goods,string> repository,IGoodsRecordManager goodsRecordManager):base(repository)
+        private readonly IGoodsManager _goodsManager;
+        public GoodsAppService(IRepository<Goods,string> repository,IGoodsRecordManager goodsRecordManager,IGoodsManager goodsManager):base(repository)
         {
             _goodsRecordManager = goodsRecordManager;
+            _goodsManager = goodsManager;
         }
 
+        /// <summary>
+        /// 盘点
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<DetailGoodsDto> Check(InOutGoodsDto input)
+        {
+            GoodsRecord record = input.MapTo<GoodsRecord>();
+            Goods result = await _goodsManager.CheckGoods(record);
+            return result.MapTo<DetailGoodsDto>();
+        }
 
         /// <summary>
         /// 入库

@@ -135,6 +135,13 @@
             货品管理-应用服务
             </summary>
         </member>
+        <member name="M:AbpDemo.Business.GoodsAppService.Check(AbpDemo.Business.InOutGoodsDto)">
+            <summary>
+            盘点
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:AbpDemo.Business.GoodsAppService.In(AbpDemo.Business.InOutGoodsDto)">
             <summary>
             入库
@@ -164,6 +171,13 @@
         <member name="M:AbpDemo.Business.IGoodsAppService.Out(AbpDemo.Business.InOutGoodsDto)">
             <summary>
             出库
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.Business.IGoodsAppService.Check(AbpDemo.Business.InOutGoodsDto)">
+            <summary>
+            盘点
             </summary>
             <param name="input"></param>
             <returns></returns>

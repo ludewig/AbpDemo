@@ -23,5 +23,11 @@ namespace AbpDemo.Business
         /// <param name="input"></param>
         /// <returns></returns>
         Task<DetailGoodsDto> Out(InOutGoodsDto input);
+        /// <summary>
+        /// 盘点
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<DetailGoodsDto> Check(InOutGoodsDto input);
     }
 }
