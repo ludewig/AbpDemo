@@ -3,14 +3,16 @@ using System;
 using AbpDemo.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AbpDemo.Migrations
 {
     [DbContext(typeof(AbpDemoDbContext))]
-    partial class AbpDemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200201045037_Add_GoodsRecord")]
+    partial class Add_GoodsRecord
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

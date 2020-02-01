@@ -24,6 +24,8 @@
     <Compile Include="Migrations\20200129092949_Initial_Migration.designer.cs" />
     <Compile Include="Migrations\20200129094254_Add_Goods.cs" />
     <Compile Include="Migrations\20200129094254_Add_Goods.designer.cs" />
+    <Compile Include="Migrations\20200201045037_Add_GoodsRecord.cs" />
+    <Compile Include="Migrations\20200201045037_Add_GoodsRecord.designer.cs" />
     <Compile Include="Migrations\AbpDemoDbContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>
