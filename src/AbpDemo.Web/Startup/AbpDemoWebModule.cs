@@ -7,12 +7,14 @@ using AbpDemo.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
+using Abp.AspNetCore.SignalR;
 
 namespace AbpDemo.Web.Startup
 {
     [DependsOn(
         typeof(AbpDemoApplicationModule), 
-        typeof(AbpDemoEntityFrameworkCoreModule), 
+        typeof(AbpDemoEntityFrameworkCoreModule),
+        typeof(AbpAspNetCoreSignalRModule),
         typeof(AbpAspNetCoreModule))]
     public class AbpDemoWebModule : AbpModule
     {

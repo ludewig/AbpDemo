@@ -15,12 +15,17 @@ namespace AbpDemo.Business
     {
         private readonly IGoodsRecordManager _goodsRecordManager;//出入库记录领域服务
         private readonly IGoodsManager _goodsManager;//货品管理领域服务
+        private readonly IMessageManager _messageManager;//实时消息领域服务
         public IEventBus EventBus { get; set; }//事件总线
         private const int MinNum = 50;//货品数量下限
-        public GoodsAppService(IRepository<Goods,string> repository,IGoodsRecordManager goodsRecordManager,IGoodsManager goodsManager):base(repository)
+        public GoodsAppService(IRepository<Goods,string> repository,
+            IGoodsRecordManager goodsRecordManager,
+            IGoodsManager goodsManager,
+            IMessageManager messageManager) :base(repository)
         {
             _goodsRecordManager = goodsRecordManager;
             _goodsManager = goodsManager;
+            _messageManager = messageManager;
             EventBus = NullEventBus.Instance;
         }
 
@@ -94,6 +99,10 @@ namespace AbpDemo.Business
                 //});
                 ////取消注册事件
                 //goodsChangedEvent.Dispose();
+
+                string message = string.Format("货品{0}当前库存为{1}，低于最低允许库存{2}，请及时采购补充！", entity.GoodsName, entity.GoodsNum, MinNum);
+                await _messageManager.BoradcastMessage(message);
+
             }
 
             DetailGoodsDto result = entity.MapTo<DetailGoodsDto>();

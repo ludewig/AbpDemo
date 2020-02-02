@@ -48,6 +48,13 @@ namespace AbpDemo.Web.Startup
             });
             #endregion
 
+            #region SignalR
+            services.AddSignalR(options =>
+            {
+                options.KeepAliveInterval = TimeSpan.FromSeconds(5);//心跳间隔
+            });
+            #endregion
+
             //Configure Abp and Dependency Injection
             return services.AddAbp<AbpDemoWebModule>(options =>
             {
@@ -80,6 +87,13 @@ namespace AbpDemo.Web.Startup
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Demo API v1");
+            });
+            #endregion
+
+            #region SignalR
+            app.UseSignalR(config =>
+            {
+                config.MapHub<MessageHub>("/messagebus");
             });
             #endregion
 
