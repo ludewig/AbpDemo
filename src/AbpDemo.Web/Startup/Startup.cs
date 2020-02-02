@@ -8,6 +8,7 @@ using Castle.Facilities.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -17,8 +18,11 @@ namespace AbpDemo.Web.Startup
 {
     public class Startup
     {
+        private readonly IConfigurationRoot _appConfiguration;
+
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
             //Configure DbContext
             services.AddAbpDbContext<AbpDemoDbContext>(options =>
             {
@@ -54,6 +58,28 @@ namespace AbpDemo.Web.Startup
                 options.KeepAliveInterval = TimeSpan.FromSeconds(5);//心跳间隔
             });
             #endregion
+
+            #region CAP
+            services.AddTransient<ISubscribeAppService, SubscribeAppService>();
+
+            services.AddCap(x =>
+            {
+                //x.UseEntityFramework<RunGoDbContext>();
+                //配置数据库连接
+                string connectionString = _appConfiguration["ConnectionStrings:Default"];
+                x.UseMySql(connectionString);
+                //配置消息队列RabbitMQ
+                x.UseRabbitMQ(option =>
+                {
+                    option.HostName = _appConfiguration["MqSettings:MqHost"];
+                    option.VirtualHost = _appConfiguration["MqSettings:MqVirtualHost"];
+                    option.UserName = _appConfiguration["MqSettings:MqUserName"];
+                    option.Password = _appConfiguration["MqSettings:MqPassword"];
+                });
+            });
+
+            #endregion
+
 
             //Configure Abp and Dependency Injection
             return services.AddAbp<AbpDemoWebModule>(options =>

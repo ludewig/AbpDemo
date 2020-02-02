@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Abp.Domain.Repositories;
 using Abp.AutoMapper;
 using Abp.Events.Bus;
+using DotNetCore.CAP;
 
 namespace AbpDemo.Business
 {
@@ -13,20 +14,31 @@ namespace AbpDemo.Business
     /// </summary>
     public class GoodsAppService: AbpDemoAppServiceBase<Goods,DetailGoodsDto,string,CreateGoodsDto,UpdateGoodsDto,PagedGoodsDto>,IGoodsAppService
     {
+        public IEventBus EventBus { get; set; }//事件总线
+        private const int MinNum = 50;//货品数量下限
         private readonly IGoodsRecordManager _goodsRecordManager;//出入库记录领域服务
         private readonly IGoodsManager _goodsManager;//货品管理领域服务
         private readonly IMessageManager _messageManager;//实时消息领域服务
-        public IEventBus EventBus { get; set; }//事件总线
-        private const int MinNum = 50;//货品数量下限
+        private readonly ICapPublisher _capPublisher;//数据发布器
         public GoodsAppService(IRepository<Goods,string> repository,
             IGoodsRecordManager goodsRecordManager,
             IGoodsManager goodsManager,
-            IMessageManager messageManager) :base(repository)
+            IMessageManager messageManager,
+            ICapPublisher capPublisher) :base(repository)
         {
             _goodsRecordManager = goodsRecordManager;
             _goodsManager = goodsManager;
             _messageManager = messageManager;
             EventBus = NullEventBus.Instance;
+            _capPublisher = capPublisher;
+        }
+
+        public override Task<DetailGoodsDto> Create(CreateGoodsDto input)
+        {
+            Goods goods = input.MapTo<Goods>();
+            _capPublisher.Publish<Goods>("goods-sync", goods);//发布数据
+
+            return base.Create(input);
         }
 
         /// <summary>
