@@ -15,6 +15,10 @@
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="wwwroot\swagger\ui\custom.css" />
+    <Content Remove="wwwroot\swagger\ui\index.html" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
     <None Include="app.config" />
     <None Update="log4net.config">
@@ -49,6 +53,6 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\swagger\ui\" />
+    <EmbeddedResource Include="wwwroot\swagger\ui\index.html" />
   </ItemGroup>
 </Project>
