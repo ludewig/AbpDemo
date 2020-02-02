@@ -50,6 +50,17 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:AbpDemo.SubscribeAppService">
+            <summary>
+            数据订阅服务
+            </summary>
+        </member>
+        <member name="M:AbpDemo.SubscribeAppService.SubscribeGoods(AbpDemo.Goods)">
+            <summary>
+            货品数据同步
+            </summary>
+            <param name="goods"></param>
+        </member>
         <member name="T:AbpDemo.Business.CreateGoodsDto">
             <summary>
             新增货品-数据传输对象

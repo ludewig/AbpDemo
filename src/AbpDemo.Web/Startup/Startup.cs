@@ -3,22 +3,29 @@ using System.IO;
 using Abp.AspNetCore;
 using Abp.Castle.Logging.Log4Net;
 using Abp.EntityFrameworkCore;
+using AbpDemo.Configuration;
 using AbpDemo.EntityFrameworkCore;
 using Castle.Facilities.Logging;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Abp.Extensions;
+using Microsoft.Extensions.Hosting;
 
 namespace AbpDemo.Web.Startup
 {
     public class Startup
     {
         private readonly IConfigurationRoot _appConfiguration;
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public Startup(IHostingEnvironment environment)
+        {
+            _hostingEnvironment = environment;
+            _appConfiguration = environment.GetAppConfiguration();
+        }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
@@ -44,6 +51,15 @@ namespace AbpDemo.Web.Startup
                         Description="",
                         TermsOfService=new Uri("https://github.com/ludewig"),
                         Contact = new OpenApiContact { Name="ludewig",Email="panshuairg@hotmail.com",Url=new Uri("https://github.com/ludewig") }
+                    });
+                options.SwaggerDoc("v2",
+                    new OpenApiInfo
+                    {
+                        Title = "AbpDemo",
+                        Version = "v2.0",
+                        Description = "",
+                        TermsOfService = new Uri("https://github.com/ludewig"),
+                        Contact = new OpenApiContact { Name = "ludewig", Email = "panshuairg@hotmail.com", Url = new Uri("https://github.com/ludewig") }
                     });
                 options.DocInclusionPredicate((docName, description) => true);
 
@@ -91,7 +107,7 @@ namespace AbpDemo.Web.Startup
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseAbp(); //Initializes ABP framework.
 
@@ -113,6 +129,7 @@ namespace AbpDemo.Web.Startup
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Demo API v1");
+                options.SwaggerEndpoint("/swagger/v2/swagger.json", "Demo API v2");
             });
             #endregion
 

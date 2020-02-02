@@ -32,7 +32,7 @@ namespace AbpDemo.Configuration
             {
                 builder = builder.AddJsonFile($"appsettings.{environmentName}.json", optional: true);
             }
-            
+
             builder = builder.AddEnvironmentVariables();
 
             return builder.Build();
