@@ -19,5 +19,6 @@
   <ItemGroup>
     <PackageReference Include="Abp.EntityFrameworkCore" Version="5.1.0" />
     <PackageReference Include="Abp.AutoMapper" Version="5.1.0" />
+    <PackageReference Include="DotNetCore.CAP" Version="3.0.0" />
   </ItemGroup>
 </Project>
