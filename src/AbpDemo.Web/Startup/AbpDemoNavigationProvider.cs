@@ -27,6 +27,13 @@ namespace AbpDemo.Web.Startup
                         )
                 ).AddItem(
                     new MenuItemDefinition(
+                        "CAP",
+                        L("CAP"),
+                        url: "cap",
+                        icon: "fa fa-hashtag"
+                        )
+                ).AddItem(
+                    new MenuItemDefinition(
                         PageNames.About,
                         L("About"),
                         url: "Home/About",

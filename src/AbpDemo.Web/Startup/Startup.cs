@@ -42,7 +42,7 @@ namespace AbpDemo.Web.Startup
 
             services.AddControllersWithViews(options =>
             {
-                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                //options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             }).AddNewtonsoftJson(options=>options.SerializerSettings.DateFormatString="yyyy-MM-dd HH:mm:ss");
 
             #region swagger
@@ -86,6 +86,7 @@ namespace AbpDemo.Web.Startup
 
             services.AddCap(x =>
             {
+                x.UseDashboard();
                 //x.UseEntityFramework<RunGoDbContext>();
                 //配置数据库连接
                 string connectionString = _appConfiguration["ConnectionStrings:Default"];
