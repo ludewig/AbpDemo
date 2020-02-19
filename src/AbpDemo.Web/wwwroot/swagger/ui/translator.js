@@ -5,8 +5,7 @@ window.SwaggerTranslator = {
 
     translate: function (sel) {
         var $this = this;
-        sel = sel || '[swagger-ui]';
-        console.log(sel);
+        sel = sel || '[data-sw-translate]';
         $(sel).each(function () {
             $(this).html($this._tryTranslate($(this).html()));
             $(this).val($this._tryTranslate($(this).val()));
@@ -15,7 +14,6 @@ window.SwaggerTranslator = {
     },
 
     _tryTranslate: function (word) {
-        console.log(word);
         return this._words[$.trim(word)] !== undefined ? this._words[$.trim(word)] : word;
     },
 

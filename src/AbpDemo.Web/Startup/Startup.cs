@@ -17,7 +17,7 @@ using Microsoft.Extensions.Hosting;
 using System.Reflection;
 using AbpDemo.Web.Shared.Swagger;
 using Swashbuckle.AspNetCore.Swagger;
-
+using System.Collections.Generic;
 
 namespace AbpDemo.Web.Startup
 {
@@ -42,7 +42,7 @@ namespace AbpDemo.Web.Startup
 
             services.AddControllersWithViews(options =>
             {
-                //options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             }).AddNewtonsoftJson(options=>options.SerializerSettings.DateFormatString="yyyy-MM-dd HH:mm:ss");
 
             #region swagger
@@ -141,9 +141,21 @@ namespace AbpDemo.Web.Startup
                 {
                     options.SwaggerEndpoint(endpoints[i], names[i]);
                 }
-                //options.IndexStream = () => Assembly.GetExecutingAssembly().GetManifestResourceStream("AbpDemo.Web.wwwroot.swagger.ui.index.html");
-                //options.InjectJavascript("AbpDemo.Web.wwwroot.swagger.ui.index.html");
+                options.IndexStream = () => Assembly.GetExecutingAssembly().GetManifestResourceStream("AbpDemo.Web.wwwroot.swagger.ui.index.html");
+                //options.InjectJavascript("ui/abp.js");
+
+                //options.InjectJavascript("../lib/jquery/dist/jquery.min.js");
+                //options.InjectJavascript("../lib/abp-web-resources/Abp/Framework/scripts/abp.js");
+                //options.InjectJavascript("../lib/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js");
                 //options.InjectBaseUrl(_appConfiguration["App:WebSiteRootAddress"]);
+
+                //options.OAuthClientId("test-id");
+                //options.OAuthClientSecret("test-secret");
+                //options.OAuthRealm("test-realm");
+                //options.OAuthAppName("test-app");
+                //options.OAuthScopeSeparator(" ");
+                //options.OAuthAdditionalQueryStringParams(new Dictionary<string, string> { { "foo", "bar" } });
+                //options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
             });
             #endregion
 

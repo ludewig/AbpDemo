@@ -29,12 +29,11 @@
 </head>
 
 <body>
-    <div id="swagger-ui"></div>
-
+    <div id="swagger-ui" data-sw-translate></div>
+    <script src="../../lib/jquery/dist/jquery.js"></script>
     <script src="./swagger-ui-bundle.js"></script>
     <script src="./swagger-ui-standalone-preset.js"></script>
     <script src="ui/abp.js"></script>
-    <script src="../../lib/jquery/dist/jquery.js"></script>
     <script src="ui/translator.js"></script>
     <script>
 
@@ -94,7 +93,7 @@
             configObject.onComplete = function (swaggerApi, swaggerUi) {
                 if (window.SwaggerTranslator) {
                     console.log("exist");
-                    window.SwaggerTranslator.translate("swagger-ui");
+                    window.SwaggerTranslator.translate();
                 }
             };
 
