@@ -11,6 +11,11 @@ namespace AbpDemo.Client
         public MainWindowViewModel(IGoodsAppService goodsAppService)
         {
             _goodsAppService = goodsAppService;
+
+            AddCommand = new DelegateCommands<string>(Add);
+            EditCommand = new DelegateCommands<DetailGoodsDto>(Edit);
+            DeleteCommand = new DelegateCommands<DetailGoodsDto>(Delete);
+
             InitData();
         }
 
@@ -32,14 +37,31 @@ namespace AbpDemo.Client
         #endregion
 
         #region Commands
-
+        public DelegateCommands<string> AddCommand { get; set; }
+        public DelegateCommands<DetailGoodsDto> EditCommand { get; set; }
+        public DelegateCommands<DetailGoodsDto> DeleteCommand { get; set; }
         #endregion
 
         #region Methods
         private void InitData()
         {
             GoodsList = _goodsAppService.All();
-        } 
+        }
+
+        private void Add(string obj)
+        {
+
+        }
+
+        private void Edit(DetailGoodsDto obj)
+        {
+            
+        }
+
+        private void Delete(DetailGoodsDto obj)
+        {
+            int num=_goodsAppService.Delete(new string[] { obj.Id }).Result;
+        }
         #endregion
 
     }

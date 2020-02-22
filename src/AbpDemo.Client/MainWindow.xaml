@@ -13,7 +13,12 @@
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" SelectionUnit="FullRow" ItemsSource="{Binding GoodsList}">
+        <WrapPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button Command="{Binding AddCommand}" CommandParameter="Add">添加</Button>
+            <Button Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=GoodsData,Path=SelectedItem}">编辑</Button>
+            <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=GoodsData,Path=SelectedItem}">删除</Button>
+        </WrapPanel>
+        <DataGrid x:Name="GoodsData" Grid.Row="1" AutoGenerateColumns="False" SelectionUnit="FullRow" ItemsSource="{Binding GoodsList}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="货品名称" Width="*" Binding="{Binding GoodsName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="货品类型" Width="*" Binding="{Binding GoodsType}"></DataGridTextColumn>
