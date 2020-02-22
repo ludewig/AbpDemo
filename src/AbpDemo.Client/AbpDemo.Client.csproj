@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -22,6 +32,12 @@
     <ProjectReference Include="..\AbpDemo.Application\AbpDemo.Application.csproj" />
     <ProjectReference Include="..\AbpDemo.Core\AbpDemo.Core.csproj" />
     <ProjectReference Include="..\AbpDemo.EntityFrameworkCore\AbpDemo.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Abp.EntityFrameworkCore.Configuration;
 using Microsoft.EntityFrameworkCore;
 using AbpDemo.Configuration;
+using System.IO;
 
 namespace AbpDemo.Client
 {
@@ -17,6 +18,12 @@ namespace AbpDemo.Client
     public class AbpDemoClientModule:AbpModule
     {
         private readonly IConfigurationRoot _configuration;
+        public AbpDemoClientModule()
+        {
+            var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var appRoot = Path.GetDirectoryName(location);
+            _configuration = AppConfigurations.Get(appRoot);
+        }
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());

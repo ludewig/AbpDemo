@@ -19,24 +19,36 @@ namespace AbpDemo.Business
         private readonly IGoodsRecordManager _goodsRecordManager;//出入库记录领域服务
         private readonly IGoodsManager _goodsManager;//货品管理领域服务
         private readonly IMessageManager _messageManager;//实时消息领域服务
-        private readonly ICapPublisher _capPublisher;//数据发布器
-        public GoodsAppService(IRepository<Goods,string> repository,
+
+        /*-------------------CAP订阅发布数据示例---------------------------*/
+        //private readonly ICapPublisher _capPublisher;//数据发布器
+        //public GoodsAppService(IRepository<Goods,string> repository,
+        //    IGoodsRecordManager goodsRecordManager,
+        //    IGoodsManager goodsManager,
+        //    IMessageManager messageManager,
+        //    ICapPublisher capPublisher) :base(repository)
+        //{
+        //    _goodsRecordManager = goodsRecordManager;
+        //    _goodsManager = goodsManager;
+        //    _messageManager = messageManager;
+        //    EventBus = NullEventBus.Instance;
+        //    _capPublisher = capPublisher;
+        //}
+        /*----------------------------------------------------------------*/
+
+
+        public GoodsAppService(IRepository<Goods, string> repository,
             IGoodsRecordManager goodsRecordManager,
-            IGoodsManager goodsManager,
-            IMessageManager messageManager,
-            ICapPublisher capPublisher) :base(repository)
+            IGoodsManager goodsManager) : base(repository)
         {
             _goodsRecordManager = goodsRecordManager;
             _goodsManager = goodsManager;
-            _messageManager = messageManager;
-            EventBus = NullEventBus.Instance;
-            _capPublisher = capPublisher;
         }
 
         public override Task<DetailGoodsDto> Create(CreateGoodsDto input)
         {
             Goods goods = input.MapTo<Goods>();
-            _capPublisher.Publish<Goods>("goods-sync", goods);//发布数据
+            //_capPublisher.Publish<Goods>("goods-sync", goods);//发布数据
 
             return base.Create(input);
         }
@@ -112,8 +124,9 @@ namespace AbpDemo.Business
                 ////取消注册事件
                 //goodsChangedEvent.Dispose();
 
-                string message = string.Format("货品{0}当前库存为{1}，低于最低允许库存{2}，请及时采购补充！", entity.GoodsName, entity.GoodsNum, MinNum);
-                await _messageManager.BoradcastMessage(message);
+
+                //string message = string.Format("货品{0}当前库存为{1}，低于最低允许库存{2}，请及时采购补充！", entity.GoodsName, entity.GoodsNum, MinNum);
+                //await _messageManager.BoradcastMessage(message);
 
             }
 

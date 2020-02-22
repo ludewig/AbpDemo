@@ -23,7 +23,7 @@ namespace AbpDemo.Client
     public partial class MainWindow : Window, ISingletonDependency
     {
         private MainWindowViewModel _viewModel;
-        private IGoodsAppService _goodsAppService;
+        private readonly IGoodsAppService _goodsAppService;
 
         public MainWindow(IGoodsAppService goodsAppService)
         {

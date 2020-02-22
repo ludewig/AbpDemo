@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Abp;
+using Abp.Castle.Logging.Log4Net;
+using Castle.Facilities.Logging;
 
 namespace AbpDemo.Client
 {
@@ -19,6 +21,9 @@ namespace AbpDemo.Client
         public App()
         {
             _bootstrapper = AbpBootstrapper.Create<AbpDemoClientModule>();
+            _bootstrapper.IocManager.IocContainer.AddFacility<LoggingFacility>(
+                f => f.UseAbpLog4Net().WithConfig("log4net.config"));
+
         }
 
         protected override void OnStartup(StartupEventArgs e)
