@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using AbpDemo.Business;
 
 namespace AbpDemo.Client
@@ -20,7 +21,7 @@ namespace AbpDemo.Client
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, ISingletonDependency
+    public partial class MainWindow : MetroWindow, ISingletonDependency
     {
         private MainWindowViewModel _viewModel;
         private readonly IGoodsAppService _goodsAppService;

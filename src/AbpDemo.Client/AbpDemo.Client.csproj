@@ -26,6 +26,8 @@
     <PackageReference Include="Abp.AutoMapper" Version="5.1.0" />
     <PackageReference Include="Abp.Castle.Log4Net" Version="5.1.0" />
     <PackageReference Include="Abp.EntityFrameworkCore" Version="5.1.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="3.2.0" />
+    <PackageReference Include="ModernWpfUI.MahApps" Version="0.8.0" />
   </ItemGroup>
 
   <ItemGroup>

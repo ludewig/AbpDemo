@@ -14,6 +14,7 @@ namespace AbpDemo.Client
             InitData();
         }
 
+        #region Properties
         private List<DetailGoodsDto> _goodsList;
 
         public List<DetailGoodsDto> GoodsList
@@ -21,18 +22,25 @@ namespace AbpDemo.Client
             get { return _goodsList; }
             set
             {
-                if (_goodsList!=value)
+                if (_goodsList != value)
                 {
                     _goodsList = value;
                     OnPropertyChanged("GoodsList");
                 }
             }
         }
+        #endregion
 
+        #region Commands
+
+        #endregion
+
+        #region Methods
         private void InitData()
         {
             GoodsList = _goodsAppService.All();
-        }
+        } 
+        #endregion
 
     }
 }
