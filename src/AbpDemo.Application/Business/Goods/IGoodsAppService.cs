@@ -29,5 +29,10 @@ namespace AbpDemo.Business
         /// <param name="input"></param>
         /// <returns></returns>
         Task<DetailGoodsDto> Check(InOutGoodsDto input);
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
+        List<DetailGoodsDto> All();
     }
 }

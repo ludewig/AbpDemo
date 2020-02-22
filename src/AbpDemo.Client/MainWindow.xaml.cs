@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Abp.Dependency;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AbpDemo.Business;
 
 namespace AbpDemo.Client
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, ISingletonDependency
     {
-        public MainWindow()
+        private MainWindowViewModel _viewModel;
+        private IGoodsAppService _goodsAppService;
+
+        public MainWindow(IGoodsAppService goodsAppService)
         {
+            _goodsAppService = goodsAppService;
+            _viewModel = new MainWindowViewModel(goodsAppService);
+            this.DataContext = _viewModel;
             InitializeComponent();
         }
     }

@@ -9,13 +9,19 @@
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="Models\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Abp" Version="5.1.0" />
     <PackageReference Include="Abp.AutoMapper" Version="5.1.0" />
+    <PackageReference Include="Abp.Castle.Log4Net" Version="5.1.0" />
     <PackageReference Include="Abp.EntityFrameworkCore" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AbpDemo.Application\AbpDemo.Application.csproj" />
+    <ProjectReference Include="..\AbpDemo.Core\AbpDemo.Core.csproj" />
+    <ProjectReference Include="..\AbpDemo.EntityFrameworkCore\AbpDemo.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

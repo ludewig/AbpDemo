@@ -120,5 +120,11 @@ namespace AbpDemo.Business
             DetailGoodsDto result = entity.MapTo<DetailGoodsDto>();
             return await Task.FromResult(result);
         }
+
+        public List<DetailGoodsDto> All()
+        {
+            List<Goods> entities = Repository.GetAllList();
+            return entities.MapTo<List<DetailGoodsDto>>();
+        }
     }
 }

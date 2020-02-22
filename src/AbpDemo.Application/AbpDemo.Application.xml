@@ -193,6 +193,12 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:AbpDemo.Business.IGoodsAppService.All">
+            <summary>
+            列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:AbpDemo.LambdaExtention`1">
             <summary>
             动态Lambda构造类

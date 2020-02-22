@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:AbpDemo.Client"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" SelectionUnit="FullRow" ItemsSource="{Binding GoodsList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="货品名称" Width="*" Binding="{Binding GoodsName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="货品类型" Width="*" Binding="{Binding GoodsType}"></DataGridTextColumn>
+                <DataGridTextColumn Header="存放位置" Width="*" Binding="{Binding Location}"></DataGridTextColumn>
+                <DataGridTextColumn Header="货品数量" Width="*" Binding="{Binding GoodsNum}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
