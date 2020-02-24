@@ -76,4 +76,35 @@ namespace AbpDemo.Client
 
         #endregion
     }
+
+    public class DelegateCommands : ICommand
+    {
+
+        public DelegateCommands(Action<object> executeMethod = null, Func<object, bool> canExecuteMethod = null)
+        {
+            this.CanExecuteDelegate = canExecuteMethod;
+            this.ExecuteDelegate = executeMethod;
+        }
+
+        public Func<object, bool> CanExecuteDelegate { get; set; }
+
+        public Action<object> ExecuteDelegate { get; set; }
+
+        public bool CanExecute(object parameter)
+        {
+            var canExecute = this.CanExecuteDelegate;
+            return canExecute == null || canExecute(parameter);
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
+
+        public void Execute(object parameter)
+        {
+            this.ExecuteDelegate?.Invoke(parameter);
+        }
+    }
 }

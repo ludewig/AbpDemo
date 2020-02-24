@@ -55,7 +55,8 @@ namespace AbpDemo.Client
 
         private void Edit(DetailGoodsDto obj)
         {
-            
+            string filePath = ShowFileDialog("目标文件");
+            WordFileHelper.BuildFile(filePath);
         }
 
         private void Delete(DetailGoodsDto obj)
