@@ -13,6 +13,8 @@
     <LangVersion>7.2</LangVersion>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="wwwroot\swagger\ui\**" />
@@ -39,6 +41,9 @@
     <None Include="wwwroot\swagger\ui\swagger-ui.js.map" />
     <None Include="wwwroot\swagger\ui\translator.js" />
     <EmbeddedResource Include="wwwroot\swagger\ui\abp.js" />
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -57,6 +62,7 @@
     <PackageReference Include="DotNetCore.CAP.MySql" Version="3.0.0" />
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     <PackageReference Include="System.Net.Primitives" Version="4.3.1" />
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
