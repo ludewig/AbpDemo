@@ -13,5 +13,14 @@ namespace AbpDemo
         {
             IocManager.RegisterAssemblyByConvention(typeof(AbpDemoApplicationModule).GetAssembly());
         }
+
+        public override void PreInitialize()
+        {
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(config =>
+            {
+                config.CreateMap<ImportCompanyDto, Company>();
+                config.CreateMap<Company, DetailCompanyDto>();
+            });
+        }
     }
 }

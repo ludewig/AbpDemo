@@ -1,4 +1,5 @@
-﻿using Abp.EntityFrameworkCore;
+﻿using System.Reflection;
+using Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AbpDemo.EntityFrameworkCore
@@ -9,6 +10,7 @@ namespace AbpDemo.EntityFrameworkCore
         public DbSet<Goods> Goods { get; set; }
         public DbSet<GoodsRecord> GoodsRecord { get; set; }
 
+        public DbSet<Company> Company { get; set; }
         public AbpDemoDbContext(DbContextOptions<AbpDemoDbContext> options) 
             : base(options)
         {
@@ -19,9 +21,12 @@ namespace AbpDemo.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            //实体对象与数据库对象映射
-            modelBuilder.ApplyConfiguration(new GoodsMap());
-            modelBuilder.ApplyConfiguration(new GoodsRecordMap());
+            //获取 EntityMapping 并注册
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            ////实体对象与数据库对象映射
+            //modelBuilder.ApplyConfiguration(new GoodsMap());
+            //modelBuilder.ApplyConfiguration(new GoodsRecordMap());
         }
     }
 }

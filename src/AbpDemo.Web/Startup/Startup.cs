@@ -53,7 +53,7 @@ namespace AbpDemo.Web.Startup
                     {
                         Title = "AbpDemo",
                         Version = "v1.0",
-                        Description = "2019年示例",
+                        Description = "2021年示例",
                         TermsOfService = new Uri("https://github.com/ludewig"),
                         Contact = new OpenApiContact { Name = "ludewig", Email = "panshuairg@hotmail.com", Url = new Uri("https://github.com/ludewig") }
                     });
@@ -139,9 +139,11 @@ namespace AbpDemo.Web.Startup
                 string[] names = _appConfiguration["App:SwaggerName"].Split('&');
                 for (int i = 0; i < endpoints.Length; i++)
                 {
+                    options.RoutePrefix = "";
+                    options.DocumentTitle = names[i];
                     options.SwaggerEndpoint(endpoints[i], names[i]);
                 }
-                options.IndexStream = () => Assembly.GetExecutingAssembly().GetManifestResourceStream("AbpDemo.Web.wwwroot.swagger.ui.index.html");
+                //options.IndexStream = () => Assembly.GetExecutingAssembly().GetManifestResourceStream("AbpDemo.Web.wwwroot.swagger.ui.index.html");
                 //options.InjectJavascript("ui/abp.js");
 
                 //options.InjectJavascript("../lib/jquery/dist/jquery.min.js");
