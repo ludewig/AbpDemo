@@ -11,7 +11,7 @@
     <RootNamespace>AbpDemo</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Projects\AbpDemo\src\AbpDemo.Application\AbpDemo.Application.xml</DocumentationFile>
+    <DocumentationFile>D:\Projects\Demo\AbpDemo\src\AbpDemo.Application\AbpDemo.Application.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbpDemo.Core\AbpDemo.Core.csproj" />

@@ -46,32 +46,7 @@ namespace AbpDemo.Web.Startup
             }).AddNewtonsoftJson(options=>options.SerializerSettings.DateFormatString="yyyy-MM-dd HH:mm:ss");
 
             #region swagger
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1",
-                    new OpenApiInfo
-                    {
-                        Title = "AbpDemo",
-                        Version = "v1.0",
-                        Description = "2021年示例",
-                        TermsOfService = new Uri("https://github.com/ludewig"),
-                        Contact = new OpenApiContact { Name = "ludewig", Email = "panshuairg@hotmail.com", Url = new Uri("https://github.com/ludewig") }
-                    });
-                options.SwaggerDoc("v2",
-                    new OpenApiInfo
-                    {
-                        Title = "AbpDemo",
-                        Version = "v2.0",
-                        Description = "2020年示例",
-                        TermsOfService = new Uri("https://github.com/ludewig"),
-                        Contact = new OpenApiContact { Name = "ludewig", Email = "panshuairg@hotmail.com", Url = new Uri("https://github.com/ludewig") }
-                    });
-                options.DocInclusionPredicate((docName, description) => true);
-                options.CustomDefaultSchemaIdSelector();
-
-                var filePath = Path.Combine(AppContext.BaseDirectory, "AbpDemo.Application.xml");
-                options.IncludeXmlComments(filePath);
-            });
+            SwaggerConfiguration.ConfigSwaggerDoc(services,_appConfiguration);
             #endregion
 
             #region SignalR
@@ -132,33 +107,7 @@ namespace AbpDemo.Web.Startup
             app.UseRouting();
 
             #region swagger
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                string[] endpoints = _appConfiguration["App:SwaggerEndPoint"].Split('&');
-                string[] names = _appConfiguration["App:SwaggerName"].Split('&');
-                for (int i = 0; i < endpoints.Length; i++)
-                {
-                    options.RoutePrefix = "";
-                    options.DocumentTitle = names[i];
-                    options.SwaggerEndpoint(endpoints[i], names[i]);
-                }
-                //options.IndexStream = () => Assembly.GetExecutingAssembly().GetManifestResourceStream("AbpDemo.Web.wwwroot.swagger.ui.index.html");
-                //options.InjectJavascript("ui/abp.js");
-
-                //options.InjectJavascript("../lib/jquery/dist/jquery.min.js");
-                //options.InjectJavascript("../lib/abp-web-resources/Abp/Framework/scripts/abp.js");
-                //options.InjectJavascript("../lib/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js");
-                //options.InjectBaseUrl(_appConfiguration["App:WebSiteRootAddress"]);
-
-                //options.OAuthClientId("test-id");
-                //options.OAuthClientSecret("test-secret");
-                //options.OAuthRealm("test-realm");
-                //options.OAuthAppName("test-app");
-                //options.OAuthScopeSeparator(" ");
-                //options.OAuthAdditionalQueryStringParams(new Dictionary<string, string> { { "foo", "bar" } });
-                //options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
-            });
+            SwaggerConfiguration.ConfigeEndpoint(app,_appConfiguration);
             #endregion
 
             #region SignalR

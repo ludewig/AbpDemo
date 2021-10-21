@@ -17,30 +17,8 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="wwwroot\swagger\ui\**" />
-    <Content Remove="wwwroot\swagger\ui\**" />
-    <EmbeddedResource Remove="wwwroot\swagger\ui\**" />
-    <None Remove="wwwroot\swagger\ui\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="wwwroot\swagger\ui\favicon-16x16.png" />
-    <Content Include="wwwroot\swagger\ui\favicon-32x32.png" />
-    <EmbeddedResource Include="wwwroot\swagger\ui\index.html" />
-    <Content Include="wwwroot\swagger\ui\oauth2-redirect.html" />
-    <Content Include="wwwroot\swagger\ui\swagger-ui.css" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
     <None Include="app.config" />
-    <None Include="wwwroot\swagger\ui\swagger-ui-bundle.js" />
-    <None Include="wwwroot\swagger\ui\swagger-ui-bundle.js.map" />
-    <None Include="wwwroot\swagger\ui\swagger-ui-standalone-preset.js" />
-    <None Include="wwwroot\swagger\ui\swagger-ui-standalone-preset.js.map" />
-    <None Include="wwwroot\swagger\ui\swagger-ui.css.map" />
-    <None Include="wwwroot\swagger\ui\swagger-ui.js" />
-    <None Include="wwwroot\swagger\ui\swagger-ui.js.map" />
-    <None Include="wwwroot\swagger\ui\translator.js" />
-    <EmbeddedResource Include="wwwroot\swagger\ui\abp.js" />
     <None Update="Dockerfile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -63,7 +41,7 @@
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
     <PackageReference Include="System.Net.Primitives" Version="4.3.1" />
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
     <PackageReference Include="Castle.LoggingFacility.MsLogging" Version="3.1.0" />

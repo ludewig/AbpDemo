@@ -50,6 +50,110 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:AbpDemo.CompanyAppService">
+            <summary>
+            应用服务类
+            </summary>
+        </member>
+        <member name="M:AbpDemo.CompanyAppService.Import(System.String)">
+            <summary>
+            批量导入
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AbpDemo.DetailCompanyDto">
+            <summary>
+            详情数据传输对象
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.CompanyName">
+            <summary>
+            企业名称
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.Representative">
+            <summary>
+            法人代表
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.CapitalAmount">
+            <summary>
+            注册资本
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.EnrollDate">
+            <summary>
+            成立日期
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.PhoneNum">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.Industry">
+            <summary>
+            所属行业
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.Status">
+            <summary>
+            存续状态
+            </summary>
+        </member>
+        <member name="T:AbpDemo.ImportCompanyDto">
+            <summary>
+            新增数据传输对象
+            </summary>
+        </member>
+        <member name="P:AbpDemo.ImportCompanyDto.CompanyName">
+            <summary>
+            企业名称
+            </summary>
+        </member>
+        <member name="P:AbpDemo.ImportCompanyDto.Representative">
+            <summary>
+            法人代表
+            </summary>
+        </member>
+        <member name="P:AbpDemo.ImportCompanyDto.CapitalAmount">
+            <summary>
+            注册资本
+            </summary>
+        </member>
+        <member name="P:AbpDemo.ImportCompanyDto.EnrollDate">
+            <summary>
+            成立日期
+            </summary>
+        </member>
+        <member name="P:AbpDemo.ImportCompanyDto.PhoneNum">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:AbpDemo.ImportCompanyDto.Industry">
+            <summary>
+            所属行业
+            </summary>
+        </member>
+        <member name="P:AbpDemo.ImportCompanyDto.Status">
+            <summary>
+            存续状态
+            </summary>
+        </member>
+        <member name="P:AbpDemo.ImportCompanyDto.Location">
+            <summary>
+            坐标
+            </summary>
+        </member>
+        <member name="M:AbpDemo.ICompanyAppService.Import(System.String)">
+            <summary>
+            批量导入
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
         <member name="T:AbpDemo.SubscribeAppService">
             <summary>
             数据订阅服务
