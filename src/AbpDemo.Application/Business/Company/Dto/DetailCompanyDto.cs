@@ -41,5 +41,15 @@ namespace AbpDemo
         /// 存续状态
         /// </summary>
         public virtual string Status { get; set; }
+
+        /// <summary>
+        /// 经度
+        /// </summary>
+        public virtual double Longitude { get; set; }
+        /// <summary>
+        /// 纬度
+        /// </summary>
+        public virtual double Latitude { get; set; }
+
     }
 }

@@ -62,6 +62,18 @@
             <param name="filePath"></param>
             <returns></returns>
         </member>
+        <member name="M:AbpDemo.CompanyAppService.Index">
+            <summary>
+            创建索引
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.CompanyAppService.Around">
+            <summary>
+            查找附近
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:AbpDemo.DetailCompanyDto">
             <summary>
             详情数据传输对象
@@ -100,6 +112,16 @@
         <member name="P:AbpDemo.DetailCompanyDto.Status">
             <summary>
             存续状态
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.Longitude">
+            <summary>
+            经度
+            </summary>
+        </member>
+        <member name="P:AbpDemo.DetailCompanyDto.Latitude">
+            <summary>
+            纬度
             </summary>
         </member>
         <member name="T:AbpDemo.ImportCompanyDto">
@@ -152,6 +174,18 @@
             批量导入
             </summary>
             <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.ICompanyAppService.Index">
+            <summary>
+            创建索引
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AbpDemo.ICompanyAppService.Around">
+            <summary>
+            查找附近
+            </summary>
             <returns></returns>
         </member>
         <member name="T:AbpDemo.SubscribeAppService">

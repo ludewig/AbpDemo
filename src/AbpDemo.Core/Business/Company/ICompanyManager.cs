@@ -21,5 +21,18 @@ namespace AbpDemo
         /// <param name="entities"></param>
         /// <returns></returns>
         List<Company> Import(List<Company> entities);
+
+        /// <summary>
+        /// 创建索引
+        /// </summary>
+        /// <returns></returns>
+        int CreateIndex();
+
+        /// <summary>
+        /// 查询半径范围内的对象
+        /// </summary>
+        /// <param name="radius"></param>
+        /// <returns></returns>
+        Dictionary<Company, double> SearchAround(double radius);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using Abp.AspNetCore;
 using Abp.Castle.Logging.Log4Net;
 using Abp.EntityFrameworkCore;
@@ -11,13 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using Abp.Extensions;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
-using AbpDemo.Web.Shared.Swagger;
-using Swashbuckle.AspNetCore.Swagger;
-using System.Collections.Generic;
+using Muyan.Search;
 
 namespace AbpDemo.Web.Startup
 {
@@ -74,6 +68,16 @@ namespace AbpDemo.Web.Startup
                     option.UserName = _appConfiguration["MqSettings:MqUserName"];
                     option.Password = _appConfiguration["MqSettings:MqPassword"];
                 });
+            });
+
+            #endregion
+
+            #region Search
+
+            services.AddSearchManager(new SearchManagerConfig()
+            {
+                DefaultPath = _appConfiguration["Search:DefaultPath"],
+                FacetPath = _appConfiguration["Search:FacetPath"]
             });
 
             #endregion

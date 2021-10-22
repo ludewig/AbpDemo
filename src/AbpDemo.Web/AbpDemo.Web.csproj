@@ -17,6 +17,12 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Resources\**" />
+    <Content Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
     <None Include="app.config" />
     <None Update="Dockerfile">
@@ -31,6 +37,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\2021-Search\Muyan.Search\Muyan.Search.csproj" />
     <ProjectReference Include="..\AbpDemo.Application\AbpDemo.Application.csproj" />
     <ProjectReference Include="..\AbpDemo.EntityFrameworkCore\AbpDemo.EntityFrameworkCore.csproj" />
   </ItemGroup>

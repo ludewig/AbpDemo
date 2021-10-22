@@ -14,7 +14,6 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbpDemo.Tests\AbpDemo.Tests.csproj" />
     <ProjectReference Include="..\..\src\AbpDemo.Web\AbpDemo.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
