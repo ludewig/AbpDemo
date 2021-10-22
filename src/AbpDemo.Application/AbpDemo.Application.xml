@@ -303,21 +303,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:AbpDemo.LambdaExtention`1">
-            <summary>
-            动态Lambda构造类
-            </summary>
-            <typeparam name="Dto"></typeparam>
-        </member>
-        <member name="M:AbpDemo.LambdaExtention`1.GetAssignAction(System.String,System.Object)">
-            <summary>
-            获取赋值操作的Lambda
-            </summary>
-            <param name="strPropertyName"></param>
-            <param name="strValue"></param>
-            <returns></returns>
-            
-        </member>
         <member name="T:AbpDemo.IAbpDemoAppServiceBase`6">
             <summary>
             应用服务基类接口
@@ -363,6 +348,21 @@
             </summary>
             <param name="input">查询数据传输对象</param>
             <returns></returns>
+        </member>
+        <member name="T:AbpDemo.LambdaExtention`1">
+            <summary>
+            动态Lambda构造类
+            </summary>
+            <typeparam name="Dto"></typeparam>
+        </member>
+        <member name="M:AbpDemo.LambdaExtention`1.GetAssignAction(System.String,System.Object)">
+            <summary>
+            获取赋值操作的Lambda
+            </summary>
+            <param name="strPropertyName"></param>
+            <param name="strValue"></param>
+            <returns></returns>
+            
         </member>
         <member name="P:AbpDemo.PagedBaseDto.Filters">
             <summary>
