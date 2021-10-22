@@ -9,6 +9,8 @@ using System;
 using System.Linq;
 using Abp.Runtime.Caching;
 using System.Linq.Expressions;
+using Abp.UI;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace AbpDemo
@@ -51,6 +53,7 @@ namespace AbpDemo
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpPost]
         public virtual Task<TEntityDto> Create(TCreateInput input)
         {
             TEntity entity = input.MapTo<TEntity>();
@@ -82,6 +85,7 @@ namespace AbpDemo
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpPost]
         public virtual Task<TEntityDto> Update(TUpdateInput input)
         {
             TEntity entity = input.MapTo<TEntity>();
@@ -96,10 +100,19 @@ namespace AbpDemo
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpGet]
         public virtual Task<TEntityDto> Detail(TPrimaryKey id)
         {
-            TEntity result = Repository.Get(id);
-            return Task.FromResult<TEntityDto>(result.MapTo<TEntityDto>());
+            try
+            {
+                TEntity result = Repository.Get(id);
+                return Task.FromResult<TEntityDto>(result.MapTo<TEntityDto>());
+            }
+            catch (Exception ex)
+            {
+                throw new UserFriendlyException("你所查找的数据不存在！",ex);
+            }
+
         }
         #endregion
 
@@ -109,6 +122,7 @@ namespace AbpDemo
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
+        [HttpDelete]
         public virtual Task<int> Delete(IEnumerable<TPrimaryKey> ids)
         {
             int num = 0;
@@ -135,6 +149,7 @@ namespace AbpDemo
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpPost]
         public virtual async Task<PagedResultDto<TEntityDto>> Page(TPagedInput input)
         {
             if (input == null)

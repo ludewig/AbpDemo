@@ -36,6 +36,8 @@ namespace AbpDemo.Web.Startup
                 var filePath = Path.Combine(AppContext.BaseDirectory, configuration["Swagger:SwaggerXmlName"]);
                 options.IncludeXmlComments(filePath, true);
             });
+
+            services.AddMvcCore().AddApiExplorer();
         }
 
         /// <summary>
@@ -48,7 +50,7 @@ namespace AbpDemo.Web.Startup
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.RoutePrefix = "";
+                options.RoutePrefix = "swagger";
                 options.DocumentTitle = configuration["Swagger:SwaggerTitle"];
                 options.SwaggerEndpoint(configuration["Swagger:SwaggerEndPoint"], configuration["Swagger:SwaggerName"]);
 

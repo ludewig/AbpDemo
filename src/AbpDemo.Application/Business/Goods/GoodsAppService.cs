@@ -6,6 +6,7 @@ using Abp.Domain.Repositories;
 using Abp.AutoMapper;
 using Abp.Events.Bus;
 using DotNetCore.CAP;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AbpDemo.Business
 {
@@ -134,6 +135,7 @@ namespace AbpDemo.Business
             return await Task.FromResult(result);
         }
 
+        [HttpGet]
         public List<DetailGoodsDto> All()
         {
             List<Goods> entities = Repository.GetAllList();
