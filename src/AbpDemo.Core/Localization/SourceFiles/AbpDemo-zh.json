@@ -9,6 +9,8 @@
     "About_Description": "关于我们",
     "API": "接口",
     "CAP": "同步",
-    "Properties": "功能特性"
+    "Properties": "功能特性",
+    "Search": "检索",
+    "Statistic": "统计" 
   }
 }

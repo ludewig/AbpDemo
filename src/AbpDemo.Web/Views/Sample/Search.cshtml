@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link rel="stylesheet" href="~/element-ui/theme-chalk/index.css"/>
+<link rel="stylesheet" href="~/element-ui/theme-chalk/fonts/element-icons.ttf"/>
+
+<style>
+    .el-header, .el-footer {
+        background-color: #B3C0D1;
+        color: #333;
+        text-align: center;
+    }
+  
+    .el-aside {
+        background-color: #D3DCE6;
+        color: #333;
+        text-align: center;
+    }
+  
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+    }
+  
+    body > .el-container {
+        margin-bottom: 20px;
+    }
+
+</style>
+
+<script src="~/vue/vue.js"></script>
+<script src="~/element-ui/index.js"></script>
+<div id="app">
+    <el-tabs :tab-position="left"  type="border-card">
+        <el-tab-pane label="索引">
+            <div>
+                <el-container>
+                    <el-header height="90px">
+
+                    </el-header>
+                    <el-container>
+                        <el-aside width="200px">
+                            <el-tree></el-tree>
+                        </el-aside>
+                        <el-container>
+                            <el-main>
+                                <el-table>
+                                    <el-table-column prop="name" label="索引名称" width="25%"></el-table-column>
+                                    <el-table-column prop="content" label="内容" width="25%"></el-table-column>
+                                    <el-table-column prop="guid" label="标识" width="25%"></el-table-column>
+                                    <el-table-column prop="size" label="大小" width="25%"></el-table-column>
+                                </el-table>
+                            </el-main>
+                            <el-footer>
+
+                            </el-footer>
+                        </el-container>
+                    </el-container>
+                </el-container>
+
+            </div>
+        </el-tab-pane>
+        <el-tab-pane label="文档">{{documents}}</el-tab-pane>
+        <el-tab-pane label="检索">{{ message }}</el-tab-pane>
+    </el-tabs>
+</div>
+<script>
+    var app=new Vue({
+        el: "#app",
+        data: {
+            indexes: "索引信息",
+            documents:"文档信息",
+            message: "欢迎使用Vue"
+        }
+    });
+</script>

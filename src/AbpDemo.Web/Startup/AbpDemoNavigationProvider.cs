@@ -33,6 +33,10 @@ namespace AbpDemo.Web.Startup
                         icon: "fa fa-hashtag"
                         )
                 ).AddItem(
+                    new MenuItemDefinition("Search", L("Search"), "fa fa-info", "Sample/Search"))
+                .AddItem(
+                    new MenuItemDefinition("Statistic", L("Statistic"), "fa fa-info", "Sample/Statistic"))
+                .AddItem(
                     new MenuItemDefinition(
                         PageNames.About,
                         L("About"),

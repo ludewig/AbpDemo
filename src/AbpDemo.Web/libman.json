@@ -135,8 +135,16 @@
       ]
     },
     {
-      "library": "vue@3.2.20",
-      "destination": "wwwroot/vue/"
+      "library": "vue@2.6.9",
+      "destination": "wwwroot/vue/",
+      "files": [
+        "vue.js",
+        "vue.min.js"
+      ]
+    },
+    {
+      "library": "element-ui@2.15.6",
+      "destination": "wwwroot/element-ui/"
     }
   ]
 }
